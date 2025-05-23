@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Download, Calendar, MapPin, Phone, Mail, Code, Briefcase } from 'lucide-react';
+import resumePDF from '/resume-piyush-kumar.pdf';
 
 const Profile = () => {
   const skills = [
@@ -71,8 +73,18 @@ const Profile = () => {
     }
   ];
 
+  const handleDownloadResume = () => {
+    // Create a link and trigger download
+    const link = document.createElement('a');
+    link.href = resumePDF;
+    link.download = 'Piyush-Kumar-Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 dark:text-white">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -80,18 +92,18 @@ const Profile = () => {
             <img
               src="/lovable-uploads/e82903fb-be78-464e-ad82-67de0e833ae9.png"
               alt="Piyush Kumar"
-              className="w-48 h-48 rounded-full mx-auto shadow-2xl border-4 border-white/50 object-cover"
+              className="w-48 h-48 rounded-full mx-auto shadow-2xl border-4 border-white/50 dark:border-gray-700/50 object-cover"
             />
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Piyush Kumar
             </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-6">AI Tools Expert & Business Development Strategist</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">AI Tools Expert & Business Development Strategist</p>
           
           {/* Contact Info */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-gray-600">
+          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-gray-600 dark:text-gray-300">
             <div className="flex items-center gap-2">
               <MapPin size={16} />
               <span>Varanasi, India</span>
@@ -106,16 +118,19 @@ const Profile = () => {
             </div>
           </div>
           
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-2">
+          <button 
+            onClick={handleDownloadResume}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition-transform shadow-lg inline-flex items-center gap-2"
+          >
             <Download size={20} />
             Download Resume
           </button>
         </div>
 
         {/* Professional Bio */}
-        <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 shadow-lg mb-12 border border-white/20">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Professional Profile</h2>
-          <p className="text-gray-600 leading-relaxed text-lg">
+        <div className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-8 shadow-lg mb-12 border border-white/20 dark:border-gray-700/20">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Professional Profile</h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
             Innovative Business Development Analyst with <strong>3+ years of experience</strong> in deploying 
             AI tools (GPT-4, Claude, Cursor) and prompt engineering to automate workflows, enhance 
             decision-making, and drive revenue growth. Skilled in integrating AI solutions for tender analysis, 
@@ -126,15 +141,15 @@ const Profile = () => {
 
         {/* Skills Section */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Technical Skills</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Technical Skills</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
-              <div key={index} className="bg-white/60 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/20">
+              <div key={index} className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/20 dark:border-gray-700/20">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="font-medium text-gray-900">{skill.name}</span>
-                  <span className="text-sm text-gray-600">{skill.level}%</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                   <div
                     className={`h-3 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`}
                     style={{ width: `${skill.level}%` }}
@@ -147,7 +162,7 @@ const Profile = () => {
 
         {/* Timeline */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Experience & Education</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Experience & Education</h2>
           <div className="space-y-8">
             {timeline.map((item, index) => (
               <div key={index} className="relative">
@@ -155,19 +170,19 @@ const Profile = () => {
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
                     {item.type === 'work' ? <Briefcase className="h-6 w-6 text-white" /> : <Code className="h-6 w-6 text-white" />}
                   </div>
-                  <div className="ml-6 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg flex-1 border border-white/20">
+                  <div className="ml-6 bg-white/60 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 shadow-lg flex-1 border border-white/20 dark:border-gray-700/20">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
-                      <span className="text-sm text-blue-600 font-medium">{item.period}</span>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
+                      <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">{item.period}</span>
                     </div>
-                    <p className="text-lg text-gray-700 mb-2">{item.organization}</p>
-                    <p className="text-sm text-gray-500 mb-4 flex items-center gap-1">
+                    <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">{item.organization}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-1">
                       <MapPin size={14} />
                       {item.location}
                     </p>
                     <ul className="space-y-2">
                       {item.achievements.map((achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start text-sm text-gray-600">
+                        <li key={achievementIndex} className="flex items-start text-sm text-gray-600 dark:text-gray-300">
                           <div className="h-1.5 w-1.5 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
                           {achievement}
                         </li>
@@ -182,16 +197,16 @@ const Profile = () => {
 
         {/* Awards & Recognition */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Awards & Leadership</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Awards & Leadership</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {awards.map((award, index) => (
-              <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover-scale border border-white/20">
+              <div key={index} className="bg-white/60 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover-scale border border-white/20 dark:border-gray-700/20">
                 <div className="h-12 w-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-white font-bold text-xl">🏆</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{award.title}</h3>
-                <p className="text-gray-600 text-sm mb-3">{award.description}</p>
-                <span className="text-blue-600 font-medium text-sm">{award.year}</span>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{award.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{award.description}</p>
+                <span className="text-blue-600 dark:text-blue-400 font-medium text-sm">{award.year}</span>
               </div>
             ))}
           </div>
