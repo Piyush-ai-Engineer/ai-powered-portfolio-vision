@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Download, Calendar, MapPin, Phone, Mail, Code } from 'lucide-react';
+import { Download, Calendar, MapPin, Phone, Mail, Code, Briefcase } from 'lucide-react';
 
 const Profile = () => {
   const skills = [
